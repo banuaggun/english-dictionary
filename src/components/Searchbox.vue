@@ -21,6 +21,7 @@ const handleData = () => {
   }).then(function(response){
     searchData.value = response.data;
     loadState.value = false;
+     searchRequests.value = '';
   }).catch(function(error){
     if(error){
       errorState.value = true;
@@ -29,6 +30,7 @@ const handleData = () => {
   errorState.value = false;
 };
 
+
 </script>
 
 <template>
@@ -36,9 +38,11 @@ const handleData = () => {
     <form @submit.prevent="handleData">
       <label for="search-input">
         <input type="text" name="text" id="search-text" placeholder="Search a word" v-model="searchRequests"/>
+        <button type="submit" @submit="handleData">
         <span>
-          <i class="fa-solid fa-magnifying-glass | text-base text-primaary_clr"></i>
+          <i class="fa-solid fa-magnifying-glass | text-base text-primary_clr"></i>
         </span>
+        </button>
       </label>
     </form>
     <article v-if="errorState">

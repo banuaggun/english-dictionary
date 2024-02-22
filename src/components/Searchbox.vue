@@ -60,7 +60,7 @@ const handleData = () => {
 </template>
 
 <style scoped>
-.search{
+.search-form{
   border:2px solid red;
   overflow:auto;
   border-radius:4px;

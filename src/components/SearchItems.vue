@@ -11,7 +11,7 @@ const props = defineProps({
   </div>
   <div v-for="meaning in searchData[0].meanings"
   :key="meaning">
-  {{meaning.partOfSpeech}}
+  <span>{{meaning.partOfSpeech}}</span>
    <ul role="list">
           <li
             v-for="definitionData in meaning.definitions"
@@ -26,3 +26,23 @@ const props = defineProps({
         </ul>
     </div>
 </template>
+
+<style scoped>
+h1{
+  text-transform: capitalize;
+  font-weight:800;
+  font:36px;
+}
+
+span{
+  text-transform: capitalize;
+  font-weight:600;
+}
+
+ul li{
+  padding:8px;
+  border:1px solid red;
+  margin-bottom:10px;
+  line-height:1.3;
+}
+</style>

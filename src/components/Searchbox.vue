@@ -34,8 +34,8 @@ const handleData = () => {
 </script>
 
 <template>
-  <section>
-    <form @submit.prevent="handleData">
+  <section class="search">
+    <form @submit.prevent="handleData" class="search-form">
       <label for="search-input">
         <input type="text" name="text" id="search-text" placeholder="Search a word" v-model="searchRequests"/>
         <button type="submit" @submit="handleData">
@@ -58,3 +58,38 @@ const handleData = () => {
     </article>
   </section>
 </template>
+
+<style scoped>
+.search{
+  border:2px solid red;
+  overflow:auto;
+  border-radius:4px;
+}
+.search input[type="text"]{
+  border:8px;
+  width:67%;
+  padding:10px;
+}
+.search input[type="text"]:focus{
+  outline:0;
+}
+.search button{
+  border:0;
+  background:none;
+  background-color:red;
+  color:#fff;
+  float:right;
+  right:0;
+  padding:10px;
+  border-top-right-radius:4px;
+  border-bottom-right-radius: 4px;
+  cursor:pointer;
+}
+
+@media only screen and (min-width:300px) and (max-width:1040px){
+  .search{
+    width:95%;
+    margin:0 auto;
+  }
+}
+</style>

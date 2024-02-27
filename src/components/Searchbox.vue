@@ -52,7 +52,7 @@ const handleData = () => {
         please try back later.
       </p>
     </article>
-    <article v-else-if="searchData">
+    <article class="search-items"  v-else-if="searchData">
       <div v-if="loadState"> loading area will be created</div>
       <SearchItems :search-data="searchData" />
     </article>
@@ -60,36 +60,50 @@ const handleData = () => {
 </template>
 
 <style scoped>
+.search{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-items{
+  display: flex;
+  flex-direction: column;
+  width:90%;
+  
+}
 .search-form{
-  border:2px solid red;
+  box-shadow:2px 2px 4px lavender;
   overflow:auto;
-  border-radius:4px;
+  background-color: floralwhite;
+ width: 67%;
 }
 .search input[type="text"]{
-  border:8px;
-  width:67%;
+  outline:none;
+  border:2px solid lavender;
+  border-radius:12px 0 0 12px;
+  width:calc(100% - 44px);
   padding:10px;
 }
 .search input[type="text"]:focus{
   outline:0;
 }
-.search button{
+.search button[type="submit"]{
   border:0;
   background:none;
-  background-color:red;
+  background-color:steelblue;
   color:#fff;
   float:right;
-  right:0;
   padding:10px;
   border-top-right-radius:4px;
   border-bottom-right-radius: 4px;
   cursor:pointer;
+  width:44px;
+  font-size:1rem;
 }
 
-@media only screen and (min-width:300px) and (max-width:1040px){
-  .search{
-    width:95%;
-    margin:0 auto;
+@media only screen and (min-width:300px) and (max-width:650px){
+  .search-form, .search input[type="text"]{
+    width:calc(100% - 44px);
   }
 }
 </style>

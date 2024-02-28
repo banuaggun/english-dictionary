@@ -31,19 +31,22 @@ const removeAudio = () => {
 };
 </script>
 <template>
-    <div>
+    
+
+    
+
+    <!-- phonetic text and audio phonetics area -->
+    <div class="word-phonetic-audio">
+        <div>
         <h1>{{ searchData[0].word }}</h1>
         <!-- word area -->
     </div>
-
     <div>
         <span v-if="searchData[0].phonetic || searchData[0].word">
             {{ searchData[0].phonetic || searchData[0].word }}
             <!-- phonetic text area -->
         </span>
     </div>
-
-    <!-- audio phonetics area -->
     <div v-if="searchData[0].phonetics.length">
         <audio @ended="removeAudio"
             :src="
@@ -59,6 +62,7 @@ const removeAudio = () => {
           class="fa-solid fa-play | text-[1.25rem] text-primary_clr md:text-[1.5rem]"
         ></i>
     </button>
+    </div>
 
     <div v-for="meaning in searchData[0].meanings" :key="meaning">
         <span>{{ meaning.partOfSpeech }}</span>
@@ -94,5 +98,22 @@ ul li {
     border: 1px solid red;
     margin-bottom: 10px;
     line-height: 1.3;
+}
+.word-phonetic-audio{
+    border:1px solid green;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+
+}
+button{
+    width:44px;
+    height:44px;
+    border:2px solid gray;
+
+    background-color:fuchsia;
+    padding:4px;
+    border-radius:12px;
+    font-size:1.2rem;
 }
 </style>

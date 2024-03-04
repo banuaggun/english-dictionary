@@ -37,12 +37,12 @@ const removeAudio = () => {
 
     <!-- phonetic text and audio phonetics area -->
     <div class="word-phonetic-audio">
-        <div>
+        <div class="word">
         <h1>{{ searchData[0].word }}</h1>
         <!-- word area -->
     </div>
     <div>
-        <span v-if="searchData[0].phonetic || searchData[0].word">
+        <span class="phonetic" v-if="searchData[0].phonetic || searchData[0].word">
             {{ searchData[0].phonetic || searchData[0].word }}
             <!-- phonetic text area -->
         </span>
@@ -64,8 +64,8 @@ const removeAudio = () => {
     </button>
     </div>
 
-    <div v-for="meaning in searchData[0].meanings" :key="meaning">
-        <span>{{ meaning.partOfSpeech }}</span>
+    <div v-for="meaning in searchData[0].meanings" :key="meaning" class="meaning">
+        <span class="meaning-type">{{ meaning.partOfSpeech }}</span>
         <ul role="list">
             <li
                 v-for="definitionData in meaning.definitions"
@@ -85,12 +85,12 @@ const removeAudio = () => {
 h1 {
     text-transform: capitalize;
     font-weight: 800;
-    font: 36px;
+    font-size: 36px;
 }
 
-span {
-    text-transform: capitalize;
-    font-weight: 600;
+.phonetic {
+    font-weight: 500;
+    font-size:24px;
 }
 
 ul li {
@@ -119,6 +119,7 @@ button{
     border:3px solid steelblue;
     border-radius: 50%;
 }
+
 button:after{
     content:"";
     position:absolute;
@@ -132,13 +133,39 @@ button:after{
     width: 85%;
     height:85%;
     transition: border 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), transform 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  transform: rotate(45deg);
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+    transform: rotate(45deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 button:hover:after{
     border:1px solid steelblue;
     transform:rotate(135deg);
     cursor:pointer;
+}
+
+.meaning-type{
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size:14px;
+    border:1px solid blue;
+}
+.meaning ul{
+    border:1px solid purple;
+    margin-bottom:10px;
+}
+
+@media only screen and (min-width:300px) and (max-width:600px){
+    button{
+      width:60px;
+      height:60px;
+      padding:20px;
+      font-size:1.5rem;
+    }
+    button:after{
+        top:7%;
+        left:7%;
+        width:85%;
+        height:85%;
+    }
 }
 </style>

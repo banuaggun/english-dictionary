@@ -37,16 +37,19 @@ const removeAudio = () => {
 
     <!-- phonetic text and audio phonetics area -->
     <div class="word-phonetic-audio">
-        <div class="word">
+      <div class="word-phonetic">
+          <div class="word">
         <h1>{{ searchData[0].word }}</h1>
         <!-- word area -->
     </div>
     <div>
-        <span class="phonetic" v-if="searchData[0].phonetic || searchData[0].word">
+        <p class="phonetic" v-if="searchData[0].phonetic || searchData[0].word">
             {{ searchData[0].phonetic || searchData[0].word }}
             <!-- phonetic text area -->
-        </span>
+        </p>
     </div>
+      </div>
+      
     <div v-if="searchData[0].phonetics.length">
         <audio @ended="removeAudio"
             :src="
@@ -71,8 +74,7 @@ const removeAudio = () => {
                 v-for="definitionData in meaning.definitions"
                 :key="definitionData"
             >
-                {{ definitionData.definition }}
-
+               <p> {{ definitionData.definition }} </p>
                 <span v-if="definitionData.example">
                     Example: "{{ definitionData.example }}"
                 </span>
@@ -83,29 +85,30 @@ const removeAudio = () => {
 
 <style scoped>
 h1 {
-    text-transform: capitalize;
-    font-weight: 800;
-    font-size: 36px;
+  text-transform: capitalize;
 }
 
 .phonetic {
-    font-weight: 500;
-    font-size:24px;
+  font-weight: 500;
 }
-
+.word-phonetic-audio{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+}
+.word-phonetic{
+  margin:10px 0;
+}
+.word,
+.phonetic{
+  margin:5px 0;
+}
 ul li {
     padding: 8px;
     border: 1px solid red;
     margin-bottom: 10px;
-    line-height: 1.3;
 }
-.word-phonetic-audio{
-    border:1px solid green;
-    display:flex;
-    justify-content: space-between;
-    align-items:center;
-    margin:20px 0 20px 0;
-}
+
 button{
     position: relative;
     width:90px;
@@ -146,7 +149,7 @@ button:hover:after{
 .meaning-type{
     font-weight: 600;
     text-transform: capitalize;
-    font-size:14px;
+    font-size:16px;
     border:1px solid blue;
 }
 .meaning ul{
@@ -155,6 +158,21 @@ button:hover:after{
 }
 
 @media only screen and (min-width:300px) and (max-width:600px){
+  .word-phonetic-audio{
+    border:1px solid red;
+    margin:10px 0;
+  }
+  .word-phonetic{
+    border:1px solid blue;
+    display:flex;
+    flex-direction: column;
+    
+
+  }
+  .phonetic{
+    display:flex;
+    
+  }
     button{
       width:60px;
       height:60px;

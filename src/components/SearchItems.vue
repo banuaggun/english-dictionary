@@ -31,26 +31,27 @@ const removeAudio = () => {
 };
 </script>
 <template>
-    
+  <!-- phonetic text and audio phonetics area -->
+  <div class="word-phonetic-audio">
 
-    
+    <div class="word-phonetic">
 
-    <!-- phonetic text and audio phonetics area -->
-    <div class="word-phonetic-audio">
-      <div class="word-phonetic">
-          <div class="word">
+      <div class="word">
         <h1>{{ searchData[0].word }}</h1>
         <!-- word area -->
-    </div>
-    <div>
-        <p class="phonetic" v-if="searchData[0].phonetic || searchData[0].word">
-            {{ searchData[0].phonetic || searchData[0].word }}
-            <!-- phonetic text area -->
+      </div>
+
+      <div class="phonetic">
+        <p v-if="searchData[0].phonetic || searchData[0].word">
+          {{ searchData[0].phonetic || searchData[0].word }}
+          <!-- phonetic text area -->
         </p>
-    </div>
       </div>
       
-    <div v-if="searchData[0].phonetics.length">
+    </div>
+    
+    <div class="audio">
+      <div v-if="searchData[0].phonetics.length">
         <audio @ended="removeAudio"
             :src="
                 searchData[0].phonetics[0].audio ||
@@ -58,17 +59,18 @@ const removeAudio = () => {
                 searchData[0].phonetics[2].audio
             "
         ></audio>
-    </div>
-    <button v-if="searchData[0].phonetics.length" type="button" @click="playPauseAudio">
-      <i
+      </div>
+      <button v-if="searchData[0].phonetics.length" type="button" @click="playPauseAudio">
+        <i
           id="audio-icon"
           class="fa-solid fa-play | text-[1.25rem] text-primary_clr md:text-[1.5rem]"
         ></i>
-    </button>
+      </button>
     </div>
+  </div>
 
     <div v-for="meaning in searchData[0].meanings" :key="meaning" class="meaning">
-        <span class="meaning-type">{{ meaning.partOfSpeech }}</span>
+        <h5 class="meaning-type">{{ meaning.partOfSpeech }}</h5>
         <ul role="list">
             <li
                 v-for="definitionData in meaning.definitions"
@@ -92,9 +94,7 @@ h1 {
   font-weight: 500;
 }
 .word-phonetic-audio{
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
+  width:100%;
 }
 .word-phonetic{
   margin:10px 0;
@@ -161,29 +161,41 @@ button:hover:after{
   .word-phonetic-audio{
     border:1px solid red;
     margin:10px 0;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
   }
   .word-phonetic{
     border:1px solid blue;
     display:flex;
     flex-direction: column;
-    
-
   }
-  .phonetic{
+  button{
+    width:60px;
+    height:60px;
+    padding:20px;
+    font-size:1.5rem;
+  }
+  button:after{
+    top:7%;
+    left:7%;
+    width:85%;
+    height:85%;
+  }
+}
+@media only screen and (min-width:601px) and (max-width:1921px){
+  .word-phonetic-audio{
+    width:100%;
+    margin:20px 0;
     display:flex;
-    
+    justify-content: space-between;
   }
-    button{
-      width:60px;
-      height:60px;
-      padding:20px;
-      font-size:1.5rem;
-    }
-    button:after{
-        top:7%;
-        left:7%;
-        width:85%;
-        height:85%;
-    }
+  .word-phonetic{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    border:1px solid blue;
+    width:calc(100% - (100% / 3));
+  }
 }
 </style>

@@ -1,21 +1,21 @@
 <script setup>
 const props = defineProps({
-    searchData: {
-        required: true,
-    },
+  searchData: {
+    required: true,
+  },
 });
 
 let soundPlaying = false;
 
 const playPauseAudio = () => {
-    !soundPlaying ? playAudio() : pauseAudio();
+  !soundPlaying ? playAudio() : pauseAudio();
 };
 
 const playAudio = () => {
-    soundPlaying = true;
-    document.querySelector("audio").play();
-    document.querySelector("#audio-icon").classList.remove("fa-play");
-    document.querySelector("#audio-icon").classList.add("fa-pause");
+  soundPlaying = true;
+  document.querySelector("audio").play();
+  document.querySelector("#audio-icon").classList.remove("fa-play");
+  document.querySelector("#audio-icon").classList.add("fa-pause");
 };
 
 const pauseAudio = () => {
@@ -35,6 +35,7 @@ const removeAudio = () => {
   <div class="word-phonetic-audio">
 
     <div class="word-phonetic">
+      <!-- word phonetic area -->
 
       <div class="word">
         <h1>{{ searchData[0].word }}</h1>
@@ -69,20 +70,28 @@ const removeAudio = () => {
     </div>
   </div>
 
-    <div v-for="meaning in searchData[0].meanings" :key="meaning" class="meaning">
-        <h5 class="meaning-type">{{ meaning.partOfSpeech }}</h5>
-        <ul role="list">
-            <li
-                v-for="definitionData in meaning.definitions"
-                :key="definitionData"
-            >
-               <p> {{ definitionData.definition }} </p>
-                <span v-if="definitionData.example">
-                    Example: "{{ definitionData.example }}"
-                </span>
-            </li>
-        </ul>
-    </div>
+  <div 
+    v-for="meaning in searchData[0].meanings" 
+    :key="meaning"
+    class="meaning"
+  >
+    <h5 class="meaning-type">
+      {{ meaning.partOfSpeech }}
+    </h5>
+    <ul role="list">
+      <li
+        v-for="definitionData in meaning.definitions"
+        :key="definitionData"
+      >
+        <p> 
+          {{ definitionData.definition }} 
+        </p>
+        <span v-if="definitionData.example">
+          <b><i>Example:</i></b> "{{ definitionData.example }}"
+        </span>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style scoped>
@@ -97,76 +106,67 @@ h1 {
   width:100%;
 }
 .word-phonetic{
-  margin:10px 0;
+  margin:15px 0;
 }
-.word,
-.phonetic{
-  margin:5px 0;
+ul > li {
+  margin-bottom: 10px;
+  line-height:1.3;
 }
-ul li {
-    padding: 8px;
-    border: 1px solid red;
-    margin-bottom: 10px;
+ul > li > p{
+  letter-spacing: 0.2px;
+  padding:8px 4px;
+}
+
+ul > li > span{
+  display:block;
+  padding:8px 12px;
 }
 
 button{
-    position: relative;
-    width:90px;
-    height:90px;
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    padding: 20px;
-    color: steelblue;
-    font-size:2rem;
-    border:3px solid steelblue;
-    border-radius: 50%;
+  position: relative;
+  width:90px;
+  height:90px;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  padding: 20px;
+  color: steelblue;
+  font-size:2rem;
+  border:3px solid steelblue;
+  border-radius: 50%;
 }
 
 button:after{
-    content:"";
-    position:absolute;
-    top:7%;
-    left:7%;
-    border-radius:50%;
-    border-top:1px solid transparent;
-    border-right:1px solid steelblue;
-    border-bottom:1px solid transparent;
-    border-left:1px solid steelblue;
-    width: 85%;
-    height:85%;
-    transition: border 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), transform 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
-    transform: rotate(45deg);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+  content:"";
+  position:absolute;
+  top:7%;
+  left:7%;
+  border-radius:50%;
+  border-top:1px solid transparent;
+  border-right:1px solid steelblue;
+  border-bottom:1px solid transparent;
+  border-left:1px solid steelblue;
+  width: 85%;
+  height:85%;
+  transition: border 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86), transform 600ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transform: rotate(45deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 button:hover:after{
-    border:1px solid steelblue;
-    transform:rotate(135deg);
-    cursor:pointer;
-}
-
-.meaning-type{
-    font-weight: 600;
-    text-transform: capitalize;
-    font-size:16px;
-    border:1px solid blue;
-}
-.meaning ul{
-    border:1px solid purple;
-    margin-bottom:10px;
+  border:1px solid steelblue;
+  transform:rotate(135deg);
+  cursor:pointer;
 }
 
 @media only screen and (min-width:300px) and (max-width:600px){
   .word-phonetic-audio{
-    border:1px solid red;
     margin:10px 0;
     display:flex;
     justify-content: space-between;
     align-items:center;
   }
   .word-phonetic{
-    border:1px solid blue;
     display:flex;
     flex-direction: column;
   }
@@ -188,14 +188,16 @@ button:hover:after{
     width:100%;
     margin:20px 0;
     display:flex;
+    flex-direction:row;
+    align-items:center;
     justify-content: space-between;
   }
   .word-phonetic{
     display:flex;
+    flex-direction:row !important;
     align-items:center;
     justify-content: space-between;
-    border:1px solid blue;
-    width:calc(100% - (100% / 3));
+    width:calc(100% - (100% / 2));
   }
 }
 </style>

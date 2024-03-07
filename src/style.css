@@ -23,6 +23,20 @@ ul li{
   padding:0;
   margin:0;
 }
+a,
+a:hover,
+a.active{
+  text-decoration: none;
+  color:black;
+  font-size:1rem;
+}
+
+a:hover,
+a.active{
+  color:darkslateblue;
+  border-bottom: 3px solid darkslateblue;
+  transition: all 0.25s ease-in-out;
+}
 
 #app{
   max-width:1100px;
@@ -48,7 +62,7 @@ p {
   font-size: 1rem!important;
 }
 span {
-  font-size: 0.875rem!important;
+  font-size: 0.938rem!important;
 }
 
 

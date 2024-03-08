@@ -1,6 +1,7 @@
 <script setup>
 import {ref} from 'vue'
 import axios from 'axios'
+import Directive from './Directive.vue'
 import SearchItems from './SearchItems.vue'
 
 const searchRequests= ref("")
@@ -8,19 +9,16 @@ const searchRequests= ref("")
 const searchData = ref(null)
 
 const errorState = ref(false)
-const loadState = ref(false)
 
 const base_url=ref("https://api.dictionaryapi.dev/api/v2/entries/en/");
 
 const handleData = () => {
-  loadState.value = true;
   axios({
     method:"get",
     url:`${base_url.value}${searchRequests.value}`,
     responseType:"json",
   }).then(function(response){
     searchData.value = response.data;
-    loadState.value = false;
      searchRequests.value = '';
   }).catch(function(error){
     if(error){
@@ -55,9 +53,10 @@ const handleData = () => {
       </div>
     </article>
     <article class="search-items"  v-else-if="searchData">
-      <div v-if="loadState"> loading area will be created</div>
+      
       <SearchItems :search-data="searchData" />
     </article>
+    <Directive v-else />
   </section>
 </template>
 
@@ -71,7 +70,7 @@ const handleData = () => {
   display: flex;
   flex-direction: column;
   width:90%;
-  
+  z-index:2;
 }
 .search-form{
   box-shadow:2px 2px 4px lavender;
@@ -129,6 +128,7 @@ const handleData = () => {
   font-weight:600;
   letter-spacing:0.25px;
 }
+
 
 @media only screen and (min-width:300px) and (max-width:650px){
   .search-form, .search input[type="text"]{

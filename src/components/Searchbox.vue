@@ -45,12 +45,14 @@ const handleData = () => {
         </button>
       </label>
     </form>
-    <article v-if="errorState">
-      <span>Image will come for 404 page</span>
+    <article v-if="errorState" class="not-found-area">
+      <div class="not-found">
+      <img src="../assets/icons/not-found.svg" alt="not found illustrations" class="not-found-image" />
       <p>
         We're sorry, we're not able to retrieve this information at the moment,
         please try back later.
       </p>
+      </div>
     </article>
     <article class="search-items"  v-else-if="searchData">
       <div v-if="loadState"> loading area will be created</div>
@@ -75,12 +77,12 @@ const handleData = () => {
   box-shadow:2px 2px 4px lavender;
   overflow:auto;
   background-color: floralwhite;
- width: 67%;
+  width: 67%;
 }
 .search input[type="text"]{
   outline:none;
   border:2px solid lavender;
-  border-radius:12px 0 0 12px;
+  border-radius:4px 0 0 4px;
   width:calc(100% - 44px);
   padding:10px;
 }
@@ -101,9 +103,83 @@ const handleData = () => {
   font-size:1rem;
 }
 
+.not-found-area{
+  width:calc(100% - 10px);
+  margin:0 20px;
+}
+
+.not-found{
+  display:flex;
+  align-items:center;
+  flex-direction: column;
+  justify-content: center;
+  border:1px solid #dcdcdc;
+  box-shadow:-1px 2px 3px #dcdcdc;
+  border-radius:4px;
+  margin:10px 10px;
+}
+
+.not-found-image{
+  width:18.75rem;
+  height:18.75rem;
+}
+.not-found p{
+  text-align:center;
+  margin:0 20px 10px 20px;
+  font-weight:600;
+  letter-spacing:0.25px;
+}
+
 @media only screen and (min-width:300px) and (max-width:650px){
   .search-form, .search input[type="text"]{
     width:calc(100% - 44px);
+  }
+}
+@media only screen and (min-width:620px) and (max-width:900px){
+  .not-found-area{
+    width:calc(100% - 20%);
+    margin:20px 20%; 
+  }
+  .not-found{
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between;
+  }
+  .not-found p{
+    text-align: left;
+    font-size:1.15rem !important;
+    margin:0 20px 10px 20px;
+  }
+}
+@media only screen and (min-width:901px) and (max-width:1100px){
+  .not-found-area{
+    width:calc(100% - 30%);
+    margin:40px 15%;
+  }
+  .not-found{
+    display:flex;
+    flex-direction:row;
+  }
+  .not-found p{
+    text-align: left;
+    font-size:1.15rem !important;
+    margin:0 30px 0px 30px;
+  }
+}
+@media only screen and (min-width:1101px) and (max-width:1922px){
+  .not-found-area{
+    width:calc(100% - 40%);
+    margin:40px 20%;
+  }
+  .not-found{
+    display:flex;
+    flex-direction:row;
+  }
+  .not-found p{
+    text-align: left;
+    font-size:1.15rem !important;
+    margin:0 30px 0px 30px;
   }
 }
 </style>

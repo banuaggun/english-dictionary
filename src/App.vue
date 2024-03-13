@@ -7,9 +7,10 @@ import {ref} from 'vue'
 </script>
 
 <template>
-  <div id="wrapper">
-    <Header/>
+  <div id="app">
+    
     <main>
+      <Header/>
       <SearchBox />
     </main>
   </div>

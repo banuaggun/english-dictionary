@@ -16,14 +16,9 @@
   box-shadow:-1px 2px 3px #dcdcdc;
   border-radius:4px;
   margin:30px 20px;
-  padding:20px 0px;
+  padding:20px;
 }
-.directive p{
-   text-align:center;
-  margin:0 20px 10px 20px;
-  font-weight:600;
-  letter-spacing:0.25px;
-}
+
 @media only screen and (min-width:500px) and (max-width:1000px){
   .directive{
     width:calc(100% - 50%);

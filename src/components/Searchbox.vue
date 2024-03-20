@@ -61,81 +61,12 @@ const handleData = () => {
 </template>
 
 <style scoped>
-.search{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.search-items{
-  display: flex;
-  flex-direction: column;
-  width:90%;
-  z-index:2;
-}
-.search-form{
-  box-shadow:2px 2px 4px lavender;
-  overflow:auto;
-  background-color: floralwhite;
-  width: 67%;
-}
-.search input[type="text"]{
-  outline:none;
-  border:2px solid lavender;
-  border-radius:4px 0 0 4px;
-  width:calc(100% - 44px);
-  padding:10px;
-}
-.search input[type="text"]:focus{
-  outline:0;
-}
-.search button[type="submit"]{
-  border:0;
-  background:none;
-  background-color:steelblue;
-  color:#fff;
-  float:right;
-  padding:10px;
-  border-top-right-radius:4px;
-  border-bottom-right-radius: 4px;
-  cursor:pointer;
-  width:44px;
-  font-size:1rem;
-}
-
-.not-found-area{
-  width:calc(100% - 10px);
-  margin:0 20px;
-}
-
-.not-found{
-  display:flex;
-  align-items:center;
-  flex-direction: column;
-  justify-content: center;
-  border:1px solid #dcdcdc;
-  box-shadow:-1px 2px 3px #dcdcdc;
-  border-radius:4px;
-  margin:10px 10px;
-}
-
-.not-found-image{
-  width:18.75rem;
-  height:18.75rem;
-}
-.not-found p{
-  text-align:center;
-  margin:0 20px 10px 20px;
-  font-weight:600;
-  letter-spacing:0.25px;
-}
-
-
-@media only screen and (min-width:300px) and (max-width:650px){
+@media only screen and (min-width:300px) and (max-width:600px){
   .search-form, .search input[type="text"]{
     width:calc(100% - 44px);
   }
 }
-@media only screen and (min-width:620px) and (max-width:900px){
+@media only screen and (min-width:601px) and (max-width:900px){
   .not-found-area{
     width:calc(100% - 20%);
     margin:20px 20%; 

@@ -64,6 +64,7 @@ const handleData = () => {
 @media only screen and (min-width:300px) and (max-width:600px){
   .search-form, .search input[type="text"]{
     width:calc(100% - 44px);
+    border:1px solid green;
   }
 }
 @media only screen and (min-width:601px) and (max-width:900px){
@@ -84,6 +85,10 @@ const handleData = () => {
   }
 }
 @media only screen and (min-width:901px) and (max-width:1100px){
+  .search-form{
+    border:1px solid blue;
+    margin-top:60px;
+  }
   .not-found-area{
     width:calc(100% - 30%);
     margin:40px 15%;
@@ -99,6 +104,9 @@ const handleData = () => {
   }
 }
 @media only screen and (min-width:1101px) and (max-width:1922px){
+  .search-form{
+    margin-top:60px;
+  }
   .not-found-area{
     width:calc(100% - 40%);
     margin:40px 20%;

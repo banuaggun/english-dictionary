@@ -139,7 +139,7 @@ const removeAudio = () => {
     height:85%;
   }
 }
-@media only screen and (min-width:601px) and (max-width:1921px){
+@media only screen and (min-width:601px) and (max-width:1000px){
   .items-word-phonetic-audio{
     width:100%;
     margin:20px 0;
@@ -154,6 +154,15 @@ const removeAudio = () => {
     align-items:center;
     justify-content: space-between;
     width:calc(100% - (100% / 2));
+  }
+}
+
+@media only screen and (min-width:1001px) and (max-width:1900px){
+  .items{
+    border:1px solid red;
+    margin:60px 15px 60px 90px;
+    width:calc(100% - 105px);
+
   }
 }
 </style>

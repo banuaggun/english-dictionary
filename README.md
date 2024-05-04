@@ -8,7 +8,7 @@ In this project, I prepared an English-to-English dictionary. Thanks to this dic
 
 > Vite
 
-> Free Dictioary Api
+> [Free Dictioary Api](https://dictionaryapi.dev/)
 
 ### Screenshots
 

@@ -1,7 +1,17 @@
-# Vue 3 + Vite
+# English Dictionary
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+In this project, I prepared an English-to-English dictionary. Thanks to this dictionary, you can both see and listen to the pronunciation of words. Moreover, you can also examine the sentence examples, synonyms and antonyms of the relevant word, if available.
 
-## Recommended IDE Setup
+## Technologies & Libraries
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+> Vue 3
+
+> Vite
+
+> Free Dictioary Api
+
+### Screenshots
+
+![Default](./src/assets/screenshots/english-dictionary-default.png)
+
+![Example](./src/assets/screenshots/english-dictionary-example.png)

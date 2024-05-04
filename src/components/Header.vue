@@ -20,7 +20,7 @@
           <h3>English Dictionary</h3> 
       </div>
       <div class="tablet-right">
-        <a href="https://github.com/banuaggun" target="_blank">
+        <a href="https://github.com/banuaggun/english-dictionary" target="_blank">
           Project Repository
         </a>
         <a href="https://portfolio-banuaggun.vercel.app/" target="_blank">

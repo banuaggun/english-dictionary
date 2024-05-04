@@ -89,7 +89,7 @@ span {
 }
 
 .search-form{
-  width:67%;
+  width:80%;
   overflow: auto;
   background-color: var(--bg-color);
   box-shadow: var(--box-shadow);
@@ -233,6 +233,10 @@ ul.items-list > li > span{
   border:1px solid var(--bg-color-button);
   transform:rotate(135deg);
   cursor:pointer;
+}
+
+.items-source{
+  word-break: break-word;
 }
 
 /* SearchItems.vue */

@@ -105,7 +105,7 @@ const handleData = () => {
 }
 @media only screen and (min-width:1101px) and (max-width:1922px){
   .search-form{
-    margin-top:60px;
+    margin-top:20px;
   }
   .not-found-area{
     width:calc(100% - 40%);

@@ -1,43 +1,25 @@
 <template>
   <header>
-    <div class="web">
-      <div class="web-navbar">
-        <div class="web-navbar-row-2">
-          <a href="https://portfolio-banuaggun.vercel.app/" target="_blank">
-            Portfolio
-          </a>
-          <a href="https://github.com/banuaggun" target="_blank">
-            Project repository
-          </a>     
-        </div>
-        <div class="web-navbar-row-1">
-          <img src="../assets/icons/logo.svg"   alt="dictionary logo" />
-          <h3>English Dictionary</h3>      
-        </div>
+    <div class="mobile">
+      <div class="mobile-row-1">
+        <img src="../assets/icons/logo.svg"   alt="dictionary logo" />
+          <h3>English Dictionary</h3> 
+      </div>
+      <div class="mobile-row-2">
+        <a href="https://github.com/banuaggun" target="_blank">
+          Project Repository
+        </a>
+        <a href="https://portfolio-banuaggun.vercel.app/" target="_blank">
+          Portfolio
+        </a>
       </div>
     </div>
     <div class="tablet">
-      <div class="tablet-navbar">
-        <div class="tablet-navbar-row-2">
-          <a href="https://portfolio-banuaggun.vercel.app/" target="_blank">
-            Portfolio
-          </a>
-          <a href="https://github.com/banuaggun" target="_blank">
-            Project repository
-          </a>  
-        </div>
-        <div class="tablet-navbar-row-1">
-          <img src="../assets/icons/logo.svg" alt="dictionary logo" />
-          <h3>English Dictionary</h3>      
-        </div>
+      <div class="tablet-left">
+        <img src="../assets/icons/logo.svg"   alt="dictionary logo" />
+          <h3>English Dictionary</h3> 
       </div>
-    </div>
-    <div class="mobile-navbar">
-      <div class="mobile-navbar-row-1">
-        <img src="../assets/icons/logo.svg" alt="dictionary logo" />
-        <h3>English dictionary</h3>
-      </div>
-      <div class="mobile-navbar-row-2">
+      <div class="tablet-right">
         <a href="https://github.com/banuaggun" target="_blank">
           Project Repository
         </a>
@@ -50,183 +32,112 @@
 </template>
 
 <style scoped>
-header .web{
-  width:80px;
-  height:calc((100vh / 1.06));
-  position:fixed;
-  left:40px;
-  top:20px;
-}
 
-header .web-navbar{
-  width:80px;
-  height:calc((100vh / 1.06));
-  bottom:0px;
-}
-
-header .tablet{
-  width:80px;
-  height:calc((100vh / 1.5));
-  position:fixed;
-  top:20%;
-  left:40px;
-}
-
-header .web,
-header .tablet{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-header .tablet-navbar{
-  width:80px;
-  height:calc((100vh / 1.5));
-  position:absolute;
-  top:0px;
-  bottom:0px;
-}
-
-header .web-navbar,
-header .tablet-navbar{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  writing-mode: vertical-lr;
-  transform:rotate(180deg);
-}
-
-header .web-navbar,
-header .tablet-navbar,
-header .mobile-navbar{
+.mobile, 
+.tablet{
   background-color: var(--text-color);
   border:2px solid var(--border-color);
   box-shadow: -4px 2px 6px var(--border-color), 2px -2px 6px var(--border-color-2);
   border-radius:100px;
 }
 
-.web-navbar-row-1,
-.tablet-navbar-row-1{
-  display:flex;
+.mobile{
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-.web-navbar-row-1 img,
-.tablet-navbar-row-1 img{
-  position: absolute;
-  bottom:20px;
-  width:40px;
-  height:40px;
-}
-
-.web-navbar-row-1 h3{
-  bottom:70px;
-  position:absolute;
-}
-.tablet-navbar-row-1 h3{
-  bottom:80px;
-  position:absolute;
-}
-
-.web-navbar-row-2,
-.tablet-navbar-row-2{
-  position: absolute;
-  top:20px;
-}
-
-.web-navbar-row-2 a,
-.tablet-navbar-row-2 a{
-  font-size:1.1rem;
-  font-weight:600;
-  letter-spacing: 0.25px;
-  border:none;
-  border-left:3px solid var(--border-color-2);
-}
-
-.web-navbar-row-2 a:nth-child(1),
-.tablet-navbar-row-2 a:nth-child(1){
-  margin-bottom:15px;
-}
-
-.web-navbar-row-2 a:hover,
-.web-navbar-row-2 a.active,
-.tablet-navbar-row-2 a:hover,
-.tablet-navbar-row-2 a.active,
-.mobile-navbar-row-2 a:hover,
-.mobile-navbar-row-2 a.active{
-  color: var(--bg-color-button);
-  transition:all 0.3s ease-in-out;
-  letter-spacing: 0.25px;;
-  border-left:3px solid var(--bg-color-button);
-}
-header .mobile-navbar {
-  display:flex;
-  flex-wrap: wrap;
-  align-items: center;
+  justify-content:center;
   margin:20px auto;
-  width:calc(100% - 40px);
-  height:70px;
 }
-
-.mobile-navbar-row-1{
-  width:100%;
+.mobile-row-1{
+  margin:10px auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-.mobile-navbar-row-2 {
-  display:flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  width: 100%;
-  padding-right:40px;
 }
 
-.mobile-navbar-row-2 a:nth-child(1){
-  margin-right:20px;
-}
-
-
-img{
-  margin-right:6px;
-  width:28px;
+.mobile-row-1 img{
+  width: 28px;
   height:28px;
-  
+}
+.mobile-row-2{
+  padding-bottom:8px;
+}
+.mobile-row-2 a{
+  font-size:1.1rem;
 }
 
-header h3,
-header h2{
-  text-transform: uppercase;
-  color:var(--text-color-3);
-  /*
-  writing-mode: vertical-rl;
-text-orientation: mixed;
-*/
+.mobile-row-2 a:nth-child(1), 
+.tablet-right a:nth-child(1){
+  margin-right:12px;
 }
-@media only screen and (min-width:300px) and (max-width:980px){
-  .tablet, .web{
-    display:none !important;
+
+.mobile-row-1 h3, 
+.tablet-left h3{
+  text-transform: capitalize;
+}
+
+.tablet{
+  display:flex;
+  margin:20px 80px;
+  padding:12px 0;
+  align-items:center;
+  justify-content: space-between;
+}
+
+.tablet-left{
+  display:flex;
+  align-items:center;
+  margin-left:30px;
+}
+
+.tablet-left img{
+  width:40px;
+  height:40px;
+  margin-right:4px;
+}
+
+.tablet-right{
+  margin-right:30px;
+}
+
+.tablet-right a{
+  font-size:1.1rem;
+}
+
+.mobile-row-2 a:hover, 
+.mobile-row-2 a.active, 
+.tablet-right a:hover,
+.tablet-right a.active{
+  color: var(--bg-color-button);
+  transition:all 0.3s ease-in-out;
+}
+
+
+@media only screen and (min-width:300px) and (max-width:400px){
+  header .mobile{
+    max-width:280px;
   }
-  .mobile-navbar{
-    display:block;
+  header .tablet{
+    display:none;
+  }
+}
+@media only screen and (min-width:401px) and (max-width:600px){
+  header .mobile{
+    min-width:auto;
+    margin-left:40px;
+    margin-right:40px;
+  }
+  header .tablet{
+    display:none;
   }
 }
 
- @media only screen and (min-width:981px) and (max-width:1000px){
-   .tablet{
-     display:block;
-   }
-   .mobile-navbar, .web{
-     display:none !important;
-   }
- }
- 
- @media only screen and (min-width:1001px) and (max-width:1921px){
-   .web{
-     display:block;
-   }
-   .tablet, .mobile-navbar{
-     display:none !important;
-   }
- }
+@media only screen and (min-width:601px) and (max-width:1921px){
+  header .mobile{
+    display:none;
+  }
+  header .tablet{
+    display:flex;
+  }
+}
+
 </style>

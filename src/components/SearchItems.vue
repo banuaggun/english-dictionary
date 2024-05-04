@@ -157,12 +157,26 @@ const removeAudio = () => {
   }
 }
 
-@media only screen and (min-width:1001px) and (max-width:1900px){
+@media only screen and (min-width:1001px) and (max-width:1921px){
   .items{
-    border:1px solid red;
-    margin:60px 15px 60px 90px;
+    margin:40px auto;
     width:calc(100% - 105px);
 
+  }
+  .items-word-phonetic-audio{
+    width:100%;
+    margin:20px 0;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content: space-between;
+  }
+  .items-word-phonetic{
+    display:flex;
+    flex-direction:row !important;
+    align-items:center;
+    justify-content: space-between;
+    width:calc(100% - (100% / 2));
   }
 }
 </style>

@@ -1,124 +1,219 @@
 <script setup>
-import {ref} from 'vue'
-import axios from 'axios'
-import Directive from './Directive.vue'
-import SearchItems from './SearchItems.vue'
+  import { ref } from "vue";
+  import axios from "axios";
 
-const searchRequests= ref("")
+  import Directive from "./Directive.vue";
+  import SearchItems from "./SearchItems.vue";
 
-const searchData = ref(null)
+  const searchRequests = ref("");
+  const searchData = ref(null);
+  const errorState = ref(false);
+  const isLoading = ref(false);
 
-const errorState = ref(false)
+  const handleData = async () => {
+    const word = searchRequests.value.trim();
 
-const base_url=ref("https://api.dictionaryapi.dev/api/v2/entries/en/");
-
-const handleData = () => {
-  axios({
-    method:"get",
-    url:`${base_url.value}${searchRequests.value}`,
-    responseType:"json",
-  }).then(function(response){
-    searchData.value = response.data;
-     searchRequests.value = '';
-  }).catch(function(error){
-    if(error){
-      errorState.value = true;
+    if (!word) {
+      return;
     }
-  });
-  errorState.value = false;
-};
 
+    errorState.value = false;
+    searchData.value = null;
+    isLoading.value = true;
 
+    try {
+      const response = await axios.get(
+        `/dictionary-api/api/v2/entries/en/${encodeURIComponent(word)}`,
+      );
+
+      searchData.value = response.data;
+
+      searchRequests.value = "";
+    } catch (error) {
+      errorState.value = true;
+      searchData.value = null;
+    } finally {
+      isLoading.value = false;
+    }
+  };
 </script>
 
 <template>
   <section class="search">
     <form @submit.prevent="handleData" class="search-form">
-      <label for="search-input">
-        <input type="text" name="text" id="search-text" placeholder="Search a word" v-model="searchRequests"/>
-        <button type="submit" @submit="handleData">
-        <span>
-          <i class="fa-solid fa-magnifying-glass | text-base text-primary_clr"></i>
-        </span>
+      <label for="search-text">
+        <input
+          id="search-text"
+          v-model="searchRequests"
+          type="text"
+          name="text"
+          placeholder="Search a word"
+          autocomplete="off" />
+
+        <button type="submit" :disabled="isLoading" aria-label="Search">
+          <span v-if="!isLoading">
+            <i
+              class="fa-solid fa-magnifying-glass text-base text-primary_clr"></i>
+          </span>
+
+          <span v-else>
+            <i
+              class="fa-solid fa-spinner fa-spin text-base text-primary_clr"></i>
+          </span>
         </button>
       </label>
     </form>
+
     <article v-if="errorState" class="not-found-area">
       <div class="not-found">
-      <img src="../assets/icons/not-found.svg" alt="not found illustrations" class="not-found-image" />
-      <p>
-        We're sorry, we're not able to retrieve this information at the moment,
-        please try back later.
-      </p>
+        <img
+          src="../assets/icons/not-found.svg"
+          alt="Word not found"
+          class="not-found-image" />
+
+        <p>
+          We're sorry, we're not able to retrieve this information at the
+          moment. Please try another word or try again later.
+        </p>
       </div>
     </article>
-    <article class="search-items"  v-else-if="searchData">
-      
+
+    <article v-else-if="searchData" class="search-items">
       <SearchItems :search-data="searchData" />
     </article>
+
     <Directive v-else />
   </section>
 </template>
 
 <style scoped>
-@media only screen and (min-width:300px) and (max-width:600px){
-  .search-form, .search input[type="text"]{
-    width:calc(100% - 44px);
-    border:1px solid green;
+  .search {
+    width: 100%;
   }
-}
-@media only screen and (min-width:601px) and (max-width:900px){
-  .not-found-area{
-    width:calc(100% - 20%);
-    margin:20px 20%; 
+
+  .search-form {
+    width: 100%;
   }
-  .not-found{
-    display:flex;
-    flex-direction: row;
-    align-items:center;
-    justify-content: space-between;
+
+  .search-form label {
+    display: flex;
+    align-items: center;
+    width: 100%;
   }
-  .not-found p{
-    text-align: left;
-    font-size:1.15rem !important;
-    margin:0 20px 10px 20px;
+
+  .search-form input[type="text"] {
+    flex: 1;
   }
-}
-@media only screen and (min-width:901px) and (max-width:1100px){
-  .search-form{
-    border:1px solid blue;
-    margin-top:60px;
+
+  .search-form button {
+    cursor: pointer;
   }
-  .not-found-area{
-    width:calc(100% - 30%);
-    margin:40px 15%;
+
+  .search-form button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
   }
-  .not-found{
-    display:flex;
-    flex-direction:row;
+
+  .not-found-area {
+    width: 100%;
   }
-  .not-found p{
-    text-align: left;
-    font-size:1.15rem !important;
-    margin:0 30px 0px 30px;
+
+  .not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-}
-@media only screen and (min-width:1101px) and (max-width:1922px){
-  .search-form{
-    margin-top:20px;
+
+  .not-found-image {
+    max-width: 250px;
   }
-  .not-found-area{
-    width:calc(100% - 40%);
-    margin:40px 20%;
+
+  .not-found p {
+    text-align: center;
   }
-  .not-found{
-    display:flex;
-    flex-direction:row;
+
+  /* Mobile */
+  @media only screen and (min-width: 300px) and (max-width: 600px) {
+    .search-form {
+      width: calc(100% - 44px);
+    }
+
+    .search-form,
+    .search input[type="text"] {
+      border: 1px solid green;
+    }
+
+    .not-found {
+      flex-direction: column;
+    }
+
+    .not-found p {
+      text-align: center;
+      font-size: 1rem;
+      margin: 20px;
+    }
   }
-  .not-found p{
-    text-align: left;
-    font-size:1.15rem !important;
-    margin:0 30px 0px 30px;
+
+  /* Tablet */
+  @media only screen and (min-width: 601px) and (max-width: 900px) {
+    .not-found-area {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    .not-found {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .not-found p {
+      text-align: left;
+      font-size: 1.15rem !important;
+      margin: 0 20px 10px;
+    }
   }
-}
+
+  /* Small desktop */
+  @media only screen and (min-width: 901px) and (max-width: 1100px) {
+    .search-form {
+      margin-top: 60px;
+    }
+
+    .not-found-area {
+      width: 70%;
+      margin: 40px auto;
+    }
+
+    .not-found {
+      flex-direction: row;
+    }
+
+    .not-found p {
+      text-align: left;
+      font-size: 1.15rem !important;
+      margin: 0 30px;
+    }
+  }
+
+  /* Desktop */
+  @media only screen and (min-width: 1101px) {
+    .search-form {
+      margin-top: 20px;
+    }
+
+    .not-found-area {
+      width: 60%;
+      margin: 40px auto;
+    }
+
+    .not-found {
+      flex-direction: row;
+    }
+
+    .not-found p {
+      text-align: left;
+      font-size: 1.15rem !important;
+      margin: 0 30px;
+    }
+  }
 </style>

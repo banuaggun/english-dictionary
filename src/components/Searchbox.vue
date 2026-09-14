@@ -47,7 +47,7 @@
           v-model="searchRequests"
           type="text"
           name="text"
-          placeholder="Search a word"
+          placeholder="Search a Word"
           autocomplete="off" />
 
         <button type="submit" :disabled="isLoading" aria-label="Search">

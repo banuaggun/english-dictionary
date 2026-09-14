@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/dictionary-api/:path*",
+      "destination": "https://dictionaryapi.dev*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

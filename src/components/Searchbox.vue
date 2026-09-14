@@ -17,7 +17,7 @@
       return;
     }
 
-    errorState.value = false;
+    errorState.value = false; 
     searchData.value = null;
     isLoading.value = true;
 
